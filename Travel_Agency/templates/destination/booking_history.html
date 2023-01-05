@@ -1,0 +1,46 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+Booking | History
+{% endblock title %}
+
+
+{% block content %}
+<section class="booking-history">
+    <div class="booking-history-container">
+        <div class="book-bar">
+            <h4>Booking History</h4>
+        </div>
+        <div class="book-history-content">
+            <table class="table">
+                <thead>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Bus</th>
+                    
+                    <th>Destination</th>
+                </thead>
+                <tbody>
+                    
+                    {% for booking_history in booking_history %}
+                        
+                    
+                        
+                    <tr>
+                        <td>{{booking_history.first_name}}</td>
+                        <td>{{booking_history.last_name}}</td>
+                        <td>{{booking_history.email}}</td>
+                        <td>{{booking_history.contact}}</td>
+                        <td>{{booking_history.bus}}</td>
+                        <td>{{booking_history.destination}}</td>
+                       
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock content %}

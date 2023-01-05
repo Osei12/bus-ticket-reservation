@@ -1,0 +1,28 @@
+{% extends 'layout/base.html' %}
+
+{% load static %}
+{% block title %}
+Home | Travel Agency
+{% endblock title %}
+{% block content %}
+<div class="hero">
+    <div class="left animate__animated animate__lightSpeedInLeft  ">
+        <h1>Lorem, ipsum.<br> Lorem, ipsum.</h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Voluptates delectus accusantium distinctio ratione amet
+            dicta.
+        </p>
+        <a href="{% url 'destination' %}" class="hero-btn">Buy Ticket Now</a>
+        <!-- <input class="search-input" placeholder="Search destination..." type="text" name="" id="">
+         <a href="#" class="searchBtn">Go</a> -->
+    </div>
+    <div class="right  animate__animated animate__lightSpeedInRight ">
+        <h4>Lorem, ipsum dolor.</h4>
+        <img class="bus" src="{% static 'images/4187084_16518 left.png' %}" alt="">
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae adipisci cumque optio sint ipsum.</p>
+    </div>
+</div>
+{% endblock content %}
+    

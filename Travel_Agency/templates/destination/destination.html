@@ -1,0 +1,117 @@
+{% extends 'layout/base.html' %}
+
+
+
+{% block title %}
+Destinations | Travel Agency
+{% endblock title %}
+
+
+{% block content %}
+<section class="destination-section">
+    <div class="destination-container">
+      <div class="destination-content-search animate__animated
+        animate__lightSpeedInRight ">
+        <div class="input-group">
+          <div class="input">
+            <input class="search" placeholder="Search destinations"
+              type="text">
+            <a href="#" class="searchBtn">Search</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="our-destinations">
+      <h3>Our Destinations ></h3>
+      <p>Select a destination to buy a ticket</p>
+      <div class="lists-group">
+        
+        {% for destination in destinations %}
+          
+     
+          
+        <a href="" class="item"  data-bs-toggle="modal" data-bs-target="#destination{{destination.id}}">
+          <div class="list">
+            <h4>{{destination.destination}}</h4>
+          </div>
+        </a>
+
+           <!-- Modal -->
+    <div class="modal fade" id="destination{{destination.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Buy Ticket</h1>
+            <button type="button" class="btn-close"
+              data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form method="POST">
+              {% csrf_token %}
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">First Name</label>
+                      <input type="text" class="form-control"  name="first_name" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                     
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Last Name</label>
+                      <input type="text" class="form-control" name="last_name" id="exampleInputPassword1" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="cars" class="form-label">Choose Bus  </label>
+            
+                      <select class="form-select" name="car" id="cars" required>
+                        
+                        {% for bus in bus %}
+                            
+                            {% if bus.destination == destination %}
+                              <option value="{{bus.bus_name}}">{{bus.bus_name}}</option>
+                            {% else %}
+                              <option disabled>Not available</option>
+                            {% endif %}
+                        {% endfor %}
+                      </select> 
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Email</label>
+                      <input type="email" class="form-control" value="{{request.user.email}}" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                     
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Contact</label>
+                      <input type="text" class="form-control" name="contact" id="exampleInputPassword1" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Destination</label>
+                      <input type="text" hidden name="destination" class="form-control" value="{{destination.destination}}" id="exampleInputPassword1" required>
+                      <input type="text" disabled class="form-control" value="{{destination.destination}}" id="exampleInputPassword1" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+              <button type="submit" class="login-btn">Book Ticket</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+              data-bs-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+        {% endfor %}
+      </div>
+    </div>
+ 
+
+  </section>
+{% endblock content %}
+    

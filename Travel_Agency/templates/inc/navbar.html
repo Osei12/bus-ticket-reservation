@@ -1,0 +1,55 @@
+{% load static %}
+        <header>
+            <div class="logo-section">
+                
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'images/car logo.png' %}" alt="">
+                    Travel Agency
+                </a>
+            </div>
+
+            <nav>
+                <svg class="close" width="50" height="50" viewBox="0 0 152 152" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M120.333 19H31.6667C28.3073 19 25.0854 20.3345 22.71 22.71C20.3345 25.0854 19 28.3073 19 31.6667V120.333C19 123.693 20.3345 126.915 22.71 129.29C25.0854 131.665 28.3073 133 31.6667 133H120.333C123.693 133 126.915 131.665 129.29 129.29C131.665 126.915 133 123.693 133 120.333V31.6667C133 28.3073 131.665 25.0854 129.29 22.71C126.915 20.3345 123.693 19 120.333 19ZM98.8 107.667L76 84.8667L53.2 107.667L44.3333 98.8L67.1333 76L44.3333 53.2L53.2 44.3333L76 67.1333L98.8 44.3333L107.667 53.2L84.8667 76L107.667 98.8L98.8 107.667Z" fill="black"/>
+                    </svg>
+                    
+                <ul>
+                    <li><a class="active" href="{% url 'home' %}">Home</a></li>
+                    
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    
+                    {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'destination' %}">Destinations</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          {{current_user.username}}
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                          <li><a class="dropdown-item" href="{% url 'booking_history' %}">Bookings</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
+                        </ul>
+                      </li>
+
+                    {% else %}
+
+
+                    {% endif %}
+                        
+                 
+                </ul>
+                {% if request.user.is_authenticated %}
+                {% else %}
+                <div class="secondary">
+                    <a href="{% url 'register' %}" class="link">Create account</a>
+                    <a href="{% url 'login' %}" class="login-btn">Log in</a>
+                </div>
+                {% endif %}
+            </nav>
+            <svg  class="menu" width="50" height="50" viewBox="0 0 152 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M114 58.5V65H38V58.5H114ZM133 35.75V42.25H19V35.75H133ZM114 13V19.5H38V13H114Z" fill="black"/>
+                </svg>
+
+
+        </header>
